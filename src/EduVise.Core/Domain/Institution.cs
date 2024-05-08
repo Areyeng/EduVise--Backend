@@ -17,9 +17,13 @@ namespace EduVise.Domain
         public virtual string Ranking { get; set; }
         public virtual int PassRate { get; set; }
         public virtual string Address { get; set; }
+        public virtual DateOnly OpeningDate { get; set; }
+        public virtual DateOnly ClosingDate { get; set; }
         public virtual string ProgrammesLink { get; set; }
         public virtual string YearbookLink { get; set; }
         public virtual string ApplicationLink { get; set; }
+
+      
 
     }
 }

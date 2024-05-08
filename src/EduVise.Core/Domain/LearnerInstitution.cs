@@ -9,7 +9,7 @@ namespace EduVise.Domain
 {
     public class LearnerInstitution : FullAuditedEntity<Guid>
     {
-        public virtual Guid LearnerId { get; set; }
-        public virtual Guid InstitutionId { get; set; }
+        public virtual Learner Learner { get; set; }
+        public virtual Institution Institution { get; set; }
     }
 }

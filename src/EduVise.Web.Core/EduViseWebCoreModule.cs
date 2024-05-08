@@ -13,6 +13,8 @@ using EduVise.Authentication.JwtBearer;
 using EduVise.Configuration;
 using EduVise.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Abp.Hangfire.Configuration;
+using Abp.Hangfire;
 
 namespace EduVise
 {
@@ -21,6 +23,7 @@ namespace EduVise
          typeof(EduViseEntityFrameworkModule),
          typeof(AbpAspNetCoreModule)
         ,typeof(AbpAspNetCoreSignalRModule)
+        ,typeof(AbpHangfireAspNetCoreModule)
      )]
     public class EduViseWebCoreModule : AbpModule
     {
@@ -38,7 +41,7 @@ namespace EduVise
             Configuration.DefaultNameOrConnectionString = _appConfiguration.GetConnectionString(
                 EduViseConsts.ConnectionStringName
             );
-
+            Configuration.BackgroundJobs.UseHangfire();
             // Use database for language management
             Configuration.Modules.Zero().LanguageManagement.EnableDbLocalization();
 

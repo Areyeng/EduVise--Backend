@@ -17,7 +17,7 @@ namespace EduVise.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.0")
+                .HasAnnotation("ProductVersion", "8.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -1579,6 +1579,760 @@ namespace EduVise.Migrations
                     b.ToTable("AbpUsers");
                 });
 
+            modelBuilder.Entity("EduVise.Domain.Course", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("AvgAPS")
+                        .HasColumnType("int");
+
+                    b.Property<string>("AvgDuration")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AvgTuition")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("FacultyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("FacultyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobTitles")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacultyId");
+
+                    b.ToTable("Courses");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Event", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("InstitutionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Venue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstitutionId");
+
+                    b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Faculty", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("CriticalThinking")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EffectiveCommunication")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnvironmentalSustainability")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HealthcareProficiency")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("InstitutionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("InstructionalDesign")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Leadership")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LegalReasoning")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProblemSolving")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RequiredSubjects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstitutionId");
+
+                    b.ToTable("Faculties");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Funding", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("AnnualAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime?>("ClosingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("Duration")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FacultyCriteria")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FundingLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InstitutionCriteria")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("MarkCriteria")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("OpeningDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Fundings");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Institution", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Accreditation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("ClosingDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateOnly>("OpeningDate")
+                        .HasColumnType("date");
+
+                    b.Property<int>("PassRate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ProgrammesLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Ranking")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YearbookLink")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Institutions");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Learner", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateOnly>("BirthDate")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmailAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("PhoneNumber")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Learners");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerCourse", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("LearnerCourses");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerEvent", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("EventId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("LearnerEvents");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerFunding", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("FundingId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FundingId");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("LearnerFundings");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerInstitution", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("InstitutionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InstitutionId");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("LearnerInstitutions");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerSkill", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("CriticalThinking")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EffectiveCommunication")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnvironmentalSustainability")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HealthcareProficiency")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstructionalDesign")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Leadership")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("LegalReasoning")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProblemSolving")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RequiredSubjects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("LearnerSkills");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Question", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("QuestionText")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Skill")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Questions");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Response", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("CriticalThinking")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EffectiveCommunication")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EnvironmentalSustainability")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HealthcareProficiency")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InstructionalDesign")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Leadership")
+                        .HasColumnType("int");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("LegalReasoning")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProblemSolving")
+                        .HasColumnType("int");
+
+                    b.Property<string>("RequiredSubjects")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("Responses");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.SavedResponse", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DeleterUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("DeletionTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("FacultyOneId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("FacultyThreeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("FacultyTwoId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<Guid?>("LearnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FacultyOneId");
+
+                    b.HasIndex("FacultyThreeId");
+
+                    b.HasIndex("FacultyTwoId");
+
+                    b.HasIndex("LearnerId");
+
+                    b.ToTable("SavedResponses");
+                });
+
             modelBuilder.Entity("EduVise.MultiTenancy.Tenant", b =>
                 {
                     b.Property<int>("Id")
@@ -1859,6 +2613,147 @@ namespace EduVise.Migrations
                     b.Navigation("DeleterUser");
 
                     b.Navigation("LastModifierUser");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Course", b =>
+                {
+                    b.HasOne("EduVise.Domain.Faculty", "Faculty")
+                        .WithMany()
+                        .HasForeignKey("FacultyId");
+
+                    b.Navigation("Faculty");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Event", b =>
+                {
+                    b.HasOne("EduVise.Domain.Institution", "Institution")
+                        .WithMany()
+                        .HasForeignKey("InstitutionId");
+
+                    b.Navigation("Institution");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Faculty", b =>
+                {
+                    b.HasOne("EduVise.Domain.Institution", "Institution")
+                        .WithMany()
+                        .HasForeignKey("InstitutionId");
+
+                    b.Navigation("Institution");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Learner", b =>
+                {
+                    b.HasOne("EduVise.Authorization.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerCourse", b =>
+                {
+                    b.HasOne("EduVise.Domain.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseId");
+
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("Course");
+
+                    b.Navigation("Learner");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerEvent", b =>
+                {
+                    b.HasOne("EduVise.Domain.Event", "Event")
+                        .WithMany()
+                        .HasForeignKey("EventId");
+
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("Event");
+
+                    b.Navigation("Learner");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerFunding", b =>
+                {
+                    b.HasOne("EduVise.Domain.Funding", "Funding")
+                        .WithMany()
+                        .HasForeignKey("FundingId");
+
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("Funding");
+
+                    b.Navigation("Learner");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerInstitution", b =>
+                {
+                    b.HasOne("EduVise.Domain.Institution", "Institution")
+                        .WithMany()
+                        .HasForeignKey("InstitutionId");
+
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("Institution");
+
+                    b.Navigation("Learner");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.LearnerSkill", b =>
+                {
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("Learner");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.Response", b =>
+                {
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("Learner");
+                });
+
+            modelBuilder.Entity("EduVise.Domain.SavedResponse", b =>
+                {
+                    b.HasOne("EduVise.Domain.Faculty", "FacultyOne")
+                        .WithMany()
+                        .HasForeignKey("FacultyOneId");
+
+                    b.HasOne("EduVise.Domain.Faculty", "FacultyThree")
+                        .WithMany()
+                        .HasForeignKey("FacultyThreeId");
+
+                    b.HasOne("EduVise.Domain.Faculty", "FacultyTwo")
+                        .WithMany()
+                        .HasForeignKey("FacultyTwoId");
+
+                    b.HasOne("EduVise.Domain.Learner", "Learner")
+                        .WithMany()
+                        .HasForeignKey("LearnerId");
+
+                    b.Navigation("FacultyOne");
+
+                    b.Navigation("FacultyThree");
+
+                    b.Navigation("FacultyTwo");
+
+                    b.Navigation("Learner");
                 });
 
             modelBuilder.Entity("EduVise.MultiTenancy.Tenant", b =>

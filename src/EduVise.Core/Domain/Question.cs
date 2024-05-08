@@ -10,5 +10,6 @@ namespace EduVise.Domain
    public class Question : FullAuditedEntity<Guid>
    {
        public virtual string QuestionText { get; set; }
+       public virtual string Skill {  get; set; }
    }
 }

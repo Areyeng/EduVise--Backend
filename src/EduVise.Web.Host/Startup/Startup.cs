@@ -17,6 +17,8 @@ using Abp.AspNetCore.SignalR.Hubs;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
+using Hangfire;
+using EduVise.Services.Jobs;
 
 namespace EduVise.Web.Host.Startup
 {
@@ -48,6 +50,10 @@ namespace EduVise.Web.Host.Startup
 
             services.AddSignalR();
 
+            services.AddHangfire(config =>
+            {
+                config.UseSqlServerStorage(_appConfiguration.GetConnectionString("Default"));
+            });
             // Configure CORS for angular2 UI
             services.AddCors(
                 options => options.AddPolicy(
@@ -79,6 +85,7 @@ namespace EduVise.Web.Host.Startup
                     )
                 )
             );
+           
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
@@ -89,6 +96,13 @@ namespace EduVise.Web.Host.Startup
 
             app.UseStaticFiles();
 
+            app.UseHangfireServer();
+
+            app.UseHangfireDashboard();
+            //app.UseHangfireDashboard("/hangfire", new DashboardOptions
+            //{
+            //    Authorization = new[] { new AbpHangfireAuthorizationFilter("MyHangFireDashboardPermissionName") }
+            //});
             app.UseRouting();
 
             app.UseAuthentication();
@@ -115,6 +129,10 @@ namespace EduVise.Web.Host.Startup
                     .GetManifestResourceStream("EduVise.Web.Host.wwwroot.swagger.ui.index.html");
                 options.DisplayRequestDuration(); // Controls the display of the request duration (in milliseconds) for "Try it out" requests.
             }); // URL: /swagger
+            var notificationJob = new NotificationAlertJob();
+
+            RecurringJob.AddOrUpdate(() => notificationJob.Execute(), Cron.MinuteInterval(10));
+
         }
 
         private void ConfigureSwagger(IServiceCollection services)

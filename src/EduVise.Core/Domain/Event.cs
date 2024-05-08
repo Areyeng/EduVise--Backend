@@ -11,10 +11,9 @@ namespace EduVise.Domain
     {
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
-        public virtual string Type { get; set; }//make reflist (Open Day,Career Fair,Information Session
-        
+        public virtual string Type { get; set; }//(Open Day,Career Fair,Information Session etc)
         public virtual DateTime Date {  get; set; }
         public virtual string Venue {  get; set; }
-        public virtual string Institution { get; set; }//for custumized get of events hosted by specific institutions
+        public virtual Institution Institution { get; set; }
     }
 }

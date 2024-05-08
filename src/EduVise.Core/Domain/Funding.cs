@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities.Auditing;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,11 +16,12 @@ namespace EduVise.Domain
         public virtual string FacultyCriteria { get; set; }
         public virtual string MarkCriteria { get; set; }
 
-        public virtual long AnnualAmount { get; set; }
-        //must be 1 digit
-        public virtual int Duration { get; set; }
-        public virtual DateOnly OpeningDate { get; set; }
-        public virtual DateOnly ClosingDate { get; set; }
+        public virtual decimal? AnnualAmount { get; set; }
+        public virtual int? Duration { get; set; }
+        public virtual DateTime? OpeningDate { get; set; }
+        public virtual DateTime? ClosingDate { get; set; }
+
+        public virtual string FundingLink { get; set; }
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Abp.Domain.Entities.Auditing;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +12,16 @@ namespace EduVise.Domain
     {
         public virtual string Name { get; set; }
         public virtual string Description { get; set; }
-        //public virtual string RequiredSubjects { get; set; } will contain all or some of the following(Mathematic,Physical Sciences,Biology,English)
-        //public virtual Institution Institutions { get; set; } list of institutions that offer faculty
-        //public virtual Course Courses { get; set; } list of courses
+        public virtual string RequiredSubjects { get; set; }
+        public virtual int CriticalThinking {  get; set; }
+        public virtual int ProblemSolving { get; set; }
+        public virtual int EffectiveCommunication { get; set; }
+        public virtual int HealthcareProficiency { get; set; }
+        public virtual int InstructionalDesign { get; set; }
+        public virtual int LegalReasoning { get; set; }
+        public virtual int Leadership { get; set; }
+        public virtual int EnvironmentalSustainability { get; set; }
+        public virtual Institution Institution { get; set; }
 
     }
 }
